@@ -24,7 +24,7 @@ public class Robot extends TimedRobot {
   public static Launcher launcher;
   public static OI oi;
   public static SmartDashboard sd;
-
+      
   
   @Override
   public void robotInit() {
@@ -95,4 +95,4 @@ public class Robot extends TimedRobot {
   public void testPeriodic() {
   }
 }
->>>>>>> 79f24e87516c8f0e1406b061dea425f30657ac5b
+
