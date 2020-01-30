@@ -12,34 +12,44 @@ import edu.wpi.first.wpilibj.buttons.Button;
  * interface to the commands and command groups that allow control of the robot. 
  */
 public class OI {
+	//Controller Inits
+		Joystick driverController = new Joystick(0);
+		Joystick operatorController = new Joystick(1);
 
-    Joystick xboxMain = new Joystick(0);
-
-	public double getLeftStickX() {
-		return xboxMain.getRawAxis(0);
+	public OI(){
+		initializeDefaultButtons();
 	}
 
-	public double getLeftStickY() {
-		return -xboxMain.getRawAxis(1);
+	private void initializeDefaultButtons(){
+		
 	}
-
-	public double getRightStickX() {
-		return xboxMain.getRawAxis(4);
-	}
-
-	public double getRightStickY() {
-		return -xboxMain.getRawAxis(5);
-	}
-
-	public double getRightTrigger() {
-		return xboxMain.getRawAxis(3);
-	}
-
-	public double getLeftTrigger() {
-		return -xboxMain.getRawAxis(2);
-	}
-
 	
+	//Analog Stick Values
+		public double getLeftStickX() {
+			return driverController.getRawAxis(0);
+		}
+
+		public double getLeftStickY() {
+			return -driverController.getRawAxis(1);
+		}
+
+		public double getRightStickX() {
+			return driverController.getRawAxis(4);
+		}
+
+		public double getRightStickY() {
+			return -driverController.getRawAxis(5);
+		}
+
+		public double getRightTrigger() {
+			return driverController.getRawAxis(3);
+		}
+
+		public double getLeftTrigger() {
+			return -driverController.getRawAxis(2);
+		}
+
+		
 
 }
 
