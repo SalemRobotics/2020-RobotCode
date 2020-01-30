@@ -19,11 +19,12 @@ public class Launcher extends Subsystem {
     }
 
     //Methods
-    public void Launch(){
-        launcherMotorA.set(1)
+    public void launch(){
+        launcherMotorA.set(1);
     }
 
-    public void Stop(){
+    
+    public void stop(){
         launcherMotorA.set(0);
     }
 
