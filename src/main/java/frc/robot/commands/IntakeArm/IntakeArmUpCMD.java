@@ -15,7 +15,7 @@ public class IntakeArmUpCMD extends CommandBase {
    * Creates a new IntakeArmUpCMD.
    */
   public IntakeArmUpCMD() {
-    addRequirements(Robot.intakearm);
+    //addRequirements();
   }
 
   // Called when the command is initially scheduled.
