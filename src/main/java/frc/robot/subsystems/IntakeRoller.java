@@ -9,24 +9,23 @@ import frc.robot.RobotMap;
 public class IntakeRoller extends Subsystem {
     
     //Motor stuff
-    public VictorSPX rollerMotor; 
+    public static VictorSPX rollerMotor;
 
     public IntakeRoller() {
         rollerMotor = new VictorSPX(RobotMap.rollerMotor);
     }
 
-
-    //Methods
-    public void Intake() {
+    // Methods
+    public static void Intake() {
         rollerMotor.set(ControlMode.PercentOutput, .80);
     }
 
-    public void Stop() {
+    public static void Stop() {
         rollerMotor.set(ControlMode.PercentOutput, 0);
 
     }
 
-    public void Deflect() {
+    public void Repel() {
         rollerMotor.set(ControlMode.PercentOutput, -.2);
     }
 
@@ -36,7 +35,7 @@ public class IntakeRoller extends Subsystem {
     @Override
     protected void initDefaultCommand() {
 
-        Deflect();
+        Repel();
     }
 
 
