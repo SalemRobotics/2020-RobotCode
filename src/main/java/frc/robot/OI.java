@@ -16,10 +16,10 @@ public class OI {
 		Joystick driverController = new Joystick(0);
 		Joystick operatorController = new Joystick(1);
 
-		JoystickButton xButton = new JoystickButton(this, );
-		JoystickButton yButton = new JoystickButton(this, );
-		JoystickButton aButton = new JoystickButton(this, );
-		JoystickButton bButton = new JoystickButton(this, );
+		//JoystickButton xButton = new JoystickButton(this, );
+		//JoystickButton yButton = new JoystickButton(this, );
+		//JoystickButton aButton = new JoystickButton(this, );
+		//JoystickButton bButton = new JoystickButton(this, );
 
 
 
