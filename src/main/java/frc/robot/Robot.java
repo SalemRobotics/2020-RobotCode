@@ -81,7 +81,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     //Tele-op Drive Command
-    drivetrain.driveWithJoysticks(oi.getLeftStickY(), oi.getRightStickX());
+    drivetrain.driveWithJoysticks(oi.getDriveY(), oi.getDriveX());
     
     //Smartboard Drive Value Output
     SmartDashboard.putNumber("Left Motor Out", RobotMap.dt_leftfront.getSensorCollection().getIntegratedSensorPosition());

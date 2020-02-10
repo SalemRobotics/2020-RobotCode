@@ -24,7 +24,7 @@ public class DriveCMD extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.drivetrain.driveWithJoysticks(Robot.oi.getLeftStickY(), Robot.oi.getRightStickX());
+    Robot.drivetrain.driveWithJoysticks(Robot.oi.getDriveY(), Robot.oi.getDriveX());
   }
 
   // Make this return true when this Command no longer needs to run execute()
