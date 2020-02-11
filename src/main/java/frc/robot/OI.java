@@ -26,6 +26,14 @@ public class OI {
 
 		initializeDefaultButtons();		
 
+
+
+	private void initializeDefaultButtons(){
+	
+		aButton2.whileHeld(new Intake());
+		
+		
+
 	}
 
 	private void initializeDefaultButtons() {
