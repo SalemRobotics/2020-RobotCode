@@ -29,7 +29,7 @@ public class OI {
 	private void initializeDefaultButtons(){
 	
 		aButton2.whileHeld(new Intake());
-		xButton2.whileHeld(new Repel()); 
+		
 		
 	}
 	
