@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.sensors.*;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -31,6 +32,9 @@ public class DriveTrain extends Subsystem {
     RobotMap.dt_rightrear = new TalonFX(RobotMap.dt_rightrear_port);
     RobotMap.dt_rightfront = new TalonFX(RobotMap.dt_rightfront_port);
 
+    //initialize gyro
+    PigeonIMU gyro = new PigeonIMU(RobotMap.GYRO_PORT);
+
     //reset to factory defaults
     RobotMap.dt_leftfront.configFactoryDefault();
     RobotMap.dt_leftrear.configFactoryDefault();
@@ -48,7 +52,8 @@ public class DriveTrain extends Subsystem {
     RobotMap.dt_rightfront.config_kD(0, Games.DrivePID_D);
    
   
-
+//this is my contribution--carly
+//i get to do stuff for once--c.a.m.
 
     RobotMap.dt_leftfront.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
     RobotMap.dt_rightfront.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
