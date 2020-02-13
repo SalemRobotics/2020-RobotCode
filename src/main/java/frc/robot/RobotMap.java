@@ -33,5 +33,9 @@ public class RobotMap {
         public static final int LAUNCHER_MOTOR_A = 6;
         public static final int LAUNCHER_MOTOR_B = 7;
 
+    //hopper stuffs
+        public static final int AGITATOR_MOTOR = 9;
+        public static final int FUNNEL_MOTOR = 10;
+
 
 }
