@@ -4,6 +4,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import frc.robot.commands.Intake.Intake;
+import frc.robot.commands.IntakeArm.IntakeArmDownCMD;
+import frc.robot.commands.IntakeArm.IntakeArmUpCMD;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 
@@ -17,9 +19,15 @@ public class OI {
 		Joystick driverController = new Joystick(0);
 		Joystick operatorController = new Joystick(1);
 
+		//Driver Controller
+
 		//Operator Controller
-		JoystickButton aButton2 = new JoystickButton(operatorController, 0);
-		JoystickButton xButton2 = new JoystickButton(operatorController, 2); 
+			JoystickButton aButton2 = new JoystickButton(operatorController, 0);
+			JoystickButton xButton2 = new JoystickButton(operatorController, 2); 
+			JoystickButton leftBumper2 = new JoystickButton(operatorController, 5);
+			JoystickButton rightBumper2 = new JoystickButton(operatorController, 5);
+
+			
 		
 
 	public OI(){
@@ -30,6 +38,10 @@ public class OI {
 	
 		aButton2.whileHeld(new Intake());
 		
+		/*
+		leftBumper2.whileHeld(new IntakeArmUpCMD());
+		rightBumper2.whileHeld(new IntakeArmDownCMD());
+		*/
 		
 	}
 	
