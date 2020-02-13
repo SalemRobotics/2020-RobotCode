@@ -22,6 +22,7 @@ public class Robot extends TimedRobot {
   public static IntakeRoller intakeroller;
   public static IntakeArm intakearm;
   public static Launcher launcher;
+  public static Hopper hopper;
   public static OI oi;
   public static SmartDashboard sd;
       
@@ -50,6 +51,7 @@ public class Robot extends TimedRobot {
     intakeroller = new IntakeRoller();
     intakearm = new IntakeArm();
     launcher = new Launcher();
+    hopper = new Hopper();
     oi = new OI();
   }
 //hello
@@ -82,10 +84,16 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     //Tele-op Drive Command
     drivetrain.driveWithJoysticks(oi.getLeftStickY(), oi.getRightStickX());
+
+    //Constant Indexing System
+    hopper.agitate();
+    hopper.funnel();
     
     //Smartboard Drive Value Output
     SmartDashboard.putNumber("Left Motor Out", RobotMap.dt_leftfront.getSensorCollection().getIntegratedSensorPosition());
     SmartDashboard.putNumber("Right Motor Out", RobotMap.dt_rightfront.getSensorCollection().getIntegratedSensorPosition());
+
+
     
   }
 
