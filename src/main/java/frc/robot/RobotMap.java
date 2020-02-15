@@ -30,6 +30,7 @@ public class RobotMap {
     //launcher stuffs
         public static final int LAUNCHER_MOTOR_A = 6;
         public static final int LAUNCHER_MOTOR_B = 7;
+        public static final int LAUNCHER_MOTOR_C = 8;
 
 
 }
