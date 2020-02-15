@@ -85,9 +85,6 @@ public class Robot extends TimedRobot {
     //Tele-op Drive Command
     drivetrain.driveWithJoysticks(oi.getLeftStickY(), oi.getRightStickX());
 
-    //Constant Indexing System
-    hopper.agitate();
-    hopper.funnel();
     
     //Smartboard Drive Value Output
     SmartDashboard.putNumber("Left Motor Out", RobotMap.dt_leftfront.getSensorCollection().getIntegratedSensorPosition());
