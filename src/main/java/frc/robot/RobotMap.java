@@ -22,6 +22,8 @@ public class RobotMap {
 
         public static DifferentialDrive drivetrain;
 
+        public static final int GYRO_PORT = 8;
+
 
     //intake stuffs
         public static final int rollerMotor = 4;
@@ -31,6 +33,10 @@ public class RobotMap {
         public static final int LAUNCHER_MOTOR_A = 6;
         public static final int LAUNCHER_MOTOR_B = 7;
         public static final int LAUNCHER_MOTOR_C = 8;
+
+    //hopper stuffs
+        public static final int AGITATOR_MOTOR = 9;
+        public static final int FUNNEL_MOTOR = 10;
 
 
 }

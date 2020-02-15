@@ -5,7 +5,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-//Subsystem imports hhhh
+//Subsystem imports 
 import frc.robot.subsystems.*;
 import frc.robot.OI;
 
@@ -22,6 +22,7 @@ public class Robot extends TimedRobot {
   public static IntakeRoller intakeroller;
   public static IntakeArm intakearm;
   public static Launcher launcher;
+  public static Hopper hopper;
   public static OI oi;
   public static SmartDashboard sd;
       
@@ -50,6 +51,7 @@ public class Robot extends TimedRobot {
     intakeroller = new IntakeRoller();
     intakearm = new IntakeArm();
     launcher = new Launcher();
+    hopper = new Hopper();
     oi = new OI();
   }
 //hello
@@ -81,11 +83,14 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     //Tele-op Drive Command
-    //drivetrain.driveWithJoysticks(oi.getLeftStickY(), oi.getRightStickX());
-    launcher.launch();
+    drivetrain.driveWithJoysticks(oi.getLeftStickY(), oi.getRightStickX());
+
+    
     //Smartboard Drive Value Output
     SmartDashboard.putNumber("Left Motor Out", RobotMap.dt_leftfront.getSensorCollection().getIntegratedSensorPosition());
     SmartDashboard.putNumber("Right Motor Out", RobotMap.dt_rightfront.getSensorCollection().getIntegratedSensorPosition());
+
+
     
   }
 

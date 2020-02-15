@@ -7,8 +7,8 @@
 
 package frc.robot.commands.IntakeArm;
 
-import frc.robot.Robot;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 
 public class IntakeArmDownCMD extends CommandBase {
   /**
