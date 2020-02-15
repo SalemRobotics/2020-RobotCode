@@ -12,19 +12,19 @@ import frc.robot.RobotMap;
 public class Hopper extends SubsystemBase {
   
   public CANSparkMax agitatorMotor;
-  public VictorSPX funnelMotor;
+  public CANSparkMax Motor;
 
   public Hopper() {
     agitatorMotor = new CANSparkMax(RobotMap.AGITATOR_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
-    funnelMotor = new VictorSPX(RobotMap.FUNNEL_MOTOR);
+    funnelMotor = new CANSparkMax(RobotMap.FUNNEL_MOTOR);
   }
 
   public void funnel(){
-    //funnelMotor.set(PercentOutputMode, .5);
+    funnelMotor.set(.5);
   }
 
   public void agitate(){
-    agitatorMotor.set(1);
+    agitatorMotor.set(.5);
   }
   @Override
   public void periodic() {
