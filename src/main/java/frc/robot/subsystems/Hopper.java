@@ -12,11 +12,11 @@ import frc.robot.RobotMap;
 public class Hopper extends SubsystemBase {
   
   public CANSparkMax agitatorMotor;
-  public CANSparkMax Motor;
+  public CANSparkMax funnelMotor;
 
   public Hopper() {
     agitatorMotor = new CANSparkMax(RobotMap.AGITATOR_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
-    funnelMotor = new CANSparkMax(RobotMap.FUNNEL_MOTOR);
+    funnelMotor = new CANSparkMax(RobotMap.FUNNEL_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
   }
 
   public void funnel(){
