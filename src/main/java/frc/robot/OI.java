@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.buttons.Trigger;
 import frc.robot.commands.Intake.Intake;
 import frc.robot.commands.IntakeArm.IntakeArmDownCMD;
 import frc.robot.commands.IntakeArm.IntakeArmUpCMD;
+import frc.robot.subsystems.Hopper;
+import frc.robot.commands.Hopper.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 
@@ -37,7 +39,8 @@ public class OI {
 	private void initializeDefaultButtons(){
 	
 		aButton2.whileHeld(new Intake());
-		
+		xButton2.whileHeld(new Agitate());
+
 		/*
 		leftBumper2.whileHeld(new IntakeArmUpCMD());
 		rightBumper2.whileHeld(new IntakeArmDownCMD());

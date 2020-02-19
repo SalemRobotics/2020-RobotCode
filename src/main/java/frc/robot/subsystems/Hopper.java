@@ -11,7 +11,7 @@ import frc.robot.RobotMap;
 
 public class Hopper extends SubsystemBase {
   
-  public CANSparkMax agitatorMotor;
+  public static CANSparkMax agitatorMotor;
   public CANSparkMax funnelMotor;
 
   public Hopper() {
@@ -23,9 +23,13 @@ public class Hopper extends SubsystemBase {
     funnelMotor.set(.5);
   }
 
-  public void agitate(){
+  public static void Agitate(){
     agitatorMotor.set(.5);
   }
+  public static void Stop(){
+    agitatorMotor.set(0);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
