@@ -1,7 +1,7 @@
 package frc.robot.xbox;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj2.command.button.Button;
 
 /**
  * Taken from https://github.com/Team319/frc319-2018/blob/master/src/org/usfirst/frc/team319/models/XboxLeftTrigger.java

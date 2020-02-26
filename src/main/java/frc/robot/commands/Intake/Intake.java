@@ -8,6 +8,7 @@
 package frc.robot.commands.Intake;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 import frc.robot.subsystems.IntakeRoller;
 
 public class Intake extends CommandBase {
@@ -24,7 +25,7 @@ public class Intake extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   public void execute() {
-    IntakeRoller.Intake();
+   // Robot.intakeroller.Intake();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -36,7 +37,7 @@ public class Intake extends CommandBase {
   // Called once after isFinished returns true
   @Override
   public void end(boolean interrupted) {
-    IntakeRoller.Stop();
+    //IntakeRoller.Stop();
   }
 
 }

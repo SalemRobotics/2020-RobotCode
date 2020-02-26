@@ -15,7 +15,7 @@ public class Launcher extends SubsystemBase {
 
     public Launcher(){
         //Kicker Motor 
-        launcherKickerMotor = new CANSparkMax(RobotMap.LAUNCHER_MOTOR_B, CANSparkMaxLowLevel.MotorType.kBrushless);
+        launcherKickerMotor = new CANSparkMax(RobotMap.LAUNCHER_MOTOR_C, CANSparkMaxLowLevel.MotorType.kBrushless);
 
         //Launcher Motors
         launcherMotorA = new CANSparkMax(RobotMap.LAUNCHER_MOTOR_A, CANSparkMaxLowLevel.MotorType.kBrushless);
@@ -24,9 +24,9 @@ public class Launcher extends SubsystemBase {
     }
 
     //Methods
-    public void launch(){
-        launcherMotorA.set(1);
-        launcherKickerMotor.set(1);
+    public void launch(double power){
+        launcherMotorA.set(power);
+        launcherKickerMotor.set(power);
     }
 
     

@@ -84,8 +84,10 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     //Tele-op Drive Command
     drivetrain.driveWithJoysticks(oi.getLeftStickY(), oi.getRightStickX());
-    intakearm.armIntakeUp(oi.opLeftTrigger());
-    intakearm.armIntakeDown(oi.opRightTrigger());
+    intakearm.armIntakeUp(oi.opLeftStickY());
+    launcher.launch(oi.opRightStickY()*0.325);
+    hopper.funnel(oi.opRightStickY()*-0.325);
+    intakeroller.Intake(1);
 
     
     //Smartboard Drive Value Output

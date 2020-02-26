@@ -1,8 +1,8 @@
 package frc.robot.xbox;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
+//mport edu.wpi.first.wpilibj2.command.button.Button;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * Provides a convenience wrapper to create an Xbox controller. Ensures all the
@@ -24,8 +24,8 @@ public class XboxJoystickController extends Joystick {
 	public JoystickButton leftStickButton = new JoystickButton(this, 9);
 	public JoystickButton rightStickButton = new JoystickButton(this, 10);
 
-	public Button leftTriggerButton = new XboxLeftTrigger(this);
-	public Button rightTriggerButton = new XboxRightTrigger(this);
+	//public Button leftTriggerButton = new XboxLeftTrigger(this);
+	//public Button rightTriggerButton = new XboxRightTrigger(this);
 
 	public XboxJoystickController(int port) {
 		super(port);
@@ -36,7 +36,7 @@ public class XboxJoystickController extends Joystick {
 	}
 
 	public double getLeftStickY() {
-		return -this.getRawAxis(1);
+		return this.getRawAxis(1);
 	}
 
 	public double getRightStickX() {
@@ -44,7 +44,7 @@ public class XboxJoystickController extends Joystick {
 	}
 
 	public double getRightStickY() {
-		return -this.getRawAxis(5);
+		return this.getRawAxis(5);
 	}
 
 	public double getRightTrigger() {
@@ -52,7 +52,7 @@ public class XboxJoystickController extends Joystick {
 	}
 
 	public double getLeftTrigger() {
-		return -this.getRawAxis(2);
+		return this.getRawAxis(2);
 	}
 
 }

@@ -14,6 +14,7 @@ public class IntakeArm extends SubsystemBase {
 
     public IntakeArm() {
         armTalon = new TalonSRX(RobotMap.armTalon);
+       // armTalon.set(, demand);
     }
 
 
@@ -23,7 +24,7 @@ public class IntakeArm extends SubsystemBase {
     }
 
     public void armIntakeDown(double power){
-        armTalon.set(ControlMode.PercentOutput, power);
+        armTalon.set(ControlMode.PercentOutput, -power);
     }
 
     public void Stop() {

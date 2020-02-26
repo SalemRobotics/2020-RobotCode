@@ -1,16 +1,14 @@
 package frc.robot;
 
 //Imports
-//import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import frc.robot.commands.Intake.Intake;
 import frc.robot.commands.IntakeArm.IntakeArmDownCMD;
 import frc.robot.commands.IntakeArm.IntakeArmUpCMD;
 import frc.robot.subsystems.Hopper;
+import frc.robot.xbox.XboxJoystickController;
 import frc.robot.commands.Hopper.*;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.Launcher.LaunchCMD;
 
 
 
@@ -19,30 +17,23 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  * interface to the commands and command groups that allow control of the robot. 
  */
 public class OI {
+
 	//Controller Inits
-		Joystick driverController = new Joystick(0);
-		Joystick operatorController = new Joystick(1);
-
-		//Driver Controller
-
-		//Operator Controller
-			JoystickButton aOperator = new JoystickButton(operatorController, 0);
-			JoystickButton xOperator = new JoystickButton(operatorController, 2); 
-			JoystickButton leftOperator = new JoystickButton(operatorController, 5);
-			JoystickButton rightOperator = new JoystickButton(operatorController, 5);
-
-			
-		
+	XboxJoystickController driverController = new XboxJoystickController(0);
+	XboxJoystickController operatorController = new XboxJoystickController(1);			
 
 	public OI(){
+
 		initializeDefaultButtons();
+
 	}
 
 	private void initializeDefaultButtons(){
 	
 		//Operator Buttons
-		aOperator.whileHeld(new Intake());
-		xOperator.whileHeld(new Agitate());
+		operatorController.aButton.whileHeld(new Intake());
+		operatorController.xButton.whileHeld(new Agitate());
+		operatorController.yButton.whenPressed(new LaunchCMD());
 		
 		/*
 		leftBumper2.whileHeld(new IntakeArmUpCMD());
@@ -73,7 +64,7 @@ public class OI {
 		}
 
 		public double getLeftTrigger() {
-			return -driverController.getRawAxis(2);
+			return driverController.getRawAxis(2);
 		}
 
 		//Analog Operator Controller Stick Values
@@ -98,7 +89,7 @@ public class OI {
 		}
 
 		public double opLeftTrigger() {
-			return -operatorController.getRawAxis(2);
+			return operatorController.getRawAxis(2);
 		}
 
 		
