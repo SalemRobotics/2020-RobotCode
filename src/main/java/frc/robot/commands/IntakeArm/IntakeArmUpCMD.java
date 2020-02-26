@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.IntakeArmUpCMD;
+package frc.robot.commands.IntakeArm;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
@@ -26,7 +26,7 @@ public class IntakeArmUpCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.intakearm.armIntakeUp();
+   // Robot.intakearm.armIntakeUp();
   }
 
   // Called once the command ends or is interrupted.

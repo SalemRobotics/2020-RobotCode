@@ -20,7 +20,6 @@ public class Launcher extends Subsystem {
         //Launcher Motors
         launcherMotorA = new CANSparkMax(RobotMap.LAUNCHER_MOTOR_A, CANSparkMaxLowLevel.MotorType.kBrushless);
         launcherMotorB = new CANSparkMax(RobotMap.LAUNCHER_MOTOR_B, CANSparkMaxLowLevel.MotorType.kBrushless);
-
         launcherMotorB.follow(launcherMotorA);
     }
 

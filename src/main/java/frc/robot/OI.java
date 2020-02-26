@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.buttons.Trigger;
 import frc.robot.commands.Intake.Intake;
 import frc.robot.commands.IntakeArm.IntakeArmDownCMD;
 import frc.robot.commands.IntakeArm.IntakeArmUpCMD;
+import frc.robot.subsystems.Hopper;
+import frc.robot.commands.Hopper.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 
@@ -22,10 +24,10 @@ public class OI {
 		//Driver Controller
 
 		//Operator Controller
-			JoystickButton aButton2 = new JoystickButton(operatorController, 0);
-			JoystickButton xButton2 = new JoystickButton(operatorController, 2); 
-			JoystickButton leftBumper2 = new JoystickButton(operatorController, 5);
-			JoystickButton rightBumper2 = new JoystickButton(operatorController, 5);
+			JoystickButton aOperator = new JoystickButton(operatorController, 0);
+			JoystickButton xOperator = new JoystickButton(operatorController, 2); 
+			JoystickButton leftOperator = new JoystickButton(operatorController, 5);
+			JoystickButton rightOperator = new JoystickButton(operatorController, 5);
 
 			
 		
@@ -36,8 +38,10 @@ public class OI {
 
 	private void initializeDefaultButtons(){
 	
-		aButton2.whileHeld(new Intake());
-		
+		//Operator Buttons
+		aOperator.whileHeld(new Intake());
+		xOperator.whileHeld(new Agitate());
+
 		/*
 		leftBumper2.whileHeld(new IntakeArmUpCMD());
 		rightBumper2.whileHeld(new IntakeArmDownCMD());
@@ -68,6 +72,31 @@ public class OI {
 
 		public double getLeftTrigger() {
 			return -driverController.getRawAxis(2);
+		}
+
+		//Analog Operator Controller Stick Values
+		public double opLeftStickX() {
+			return operatorController.getRawAxis(0);
+		}
+
+		public double opLeftStickY() {
+			return -operatorController.getRawAxis(1);
+		}
+
+		public double opRightStickX() {
+			return operatorController.getRawAxis(4);
+		}
+
+		public double opRightStickY() {
+			return -operatorController.getRawAxis(5);
+		}
+
+		public double opRightTrigger() {
+			return operatorController.getRawAxis(3);
+		}
+
+		public double opLeftTrigger() {
+			return -operatorController.getRawAxis(2);
 		}
 
 		

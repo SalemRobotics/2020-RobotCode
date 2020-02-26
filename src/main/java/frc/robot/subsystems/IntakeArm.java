@@ -18,12 +18,12 @@ public class IntakeArm extends Subsystem {
 
 
     //Methods
-    public void armIntakeUp() {
-        armTalon.set(ControlMode.PercentOutput, 1);
+    public void armIntakeUp(double power) {
+        armTalon.set(ControlMode.PercentOutput, power);
     }
 
-    public void armIntakeDown(){
-        armTalon.set(ControlMode.PercentOutput, 1);
+    public void armIntakeDown(double power){
+        armTalon.set(ControlMode.PercentOutput, power);
     }
 
     public void Stop() {
