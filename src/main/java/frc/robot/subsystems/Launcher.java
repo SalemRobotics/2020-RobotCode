@@ -3,10 +3,10 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
-public class Launcher extends Subsystem {
+public class Launcher extends SubsystemBase {
     
     //Motor Stuff
     public CANSparkMax launcherMotorA;
@@ -37,9 +37,7 @@ public class Launcher extends Subsystem {
 
     
     @Override
-    protected void initDefaultCommand() {
-        stop();
-
+    public void periodic() {
     }
 
 

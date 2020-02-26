@@ -1,7 +1,7 @@
 package frc.robot;
 
 //Imports
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
+//import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import frc.robot.commands.Intake.Intake;
 import frc.robot.commands.IntakeArm.IntakeArmDownCMD;
@@ -10,6 +10,8 @@ import frc.robot.subsystems.Hopper;
 import frc.robot.commands.Hopper.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
 
 
 /**
@@ -41,7 +43,7 @@ public class OI {
 		//Operator Buttons
 		aOperator.whileHeld(new Intake());
 		xOperator.whileHeld(new Agitate());
-
+		
 		/*
 		leftBumper2.whileHeld(new IntakeArmUpCMD());
 		rightBumper2.whileHeld(new IntakeArmDownCMD());
