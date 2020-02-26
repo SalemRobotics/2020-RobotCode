@@ -6,10 +6,10 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.CAN;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
-public class IntakeRoller extends Subsystem {
+public class IntakeRoller extends SubsystemBase {
     
     //Motor stuff
     public static CANSparkMax rollerMotorA;
@@ -41,9 +41,8 @@ public class IntakeRoller extends Subsystem {
 
 
     @Override
-    protected void initDefaultCommand() {
+    public void periodic() {
 
-        Repel();
     }
 
 

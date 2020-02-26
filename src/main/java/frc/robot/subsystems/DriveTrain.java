@@ -11,8 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.sensors.*;
-
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 import frc.robot.Games;
 import frc.robot.commands.DriveCMD;
@@ -21,7 +20,7 @@ import frc.robot.utils.UnitConversions;
 /**
  * Add your docs here.
  */
-public class DriveTrain extends Subsystem {
+public class DriveTrain extends SubsystemBase {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
@@ -64,7 +63,7 @@ public class DriveTrain extends Subsystem {
   }
   
   @Override
-  public void initDefaultCommand() {
+  public void periodic() {
     setDefaultCommand(new DriveCMD());
   }
 

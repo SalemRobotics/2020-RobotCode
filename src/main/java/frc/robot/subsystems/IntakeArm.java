@@ -1,13 +1,13 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 
-public class IntakeArm extends Subsystem {
+public class IntakeArm extends SubsystemBase {
 
     //Motor Stuff
     public TalonSRX armTalon;
@@ -32,8 +32,8 @@ public class IntakeArm extends Subsystem {
 
 
     @Override
-    protected void initDefaultCommand() {
-       Stop();
+    public void periodic() {
+        
     }
 
 
