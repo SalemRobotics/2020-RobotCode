@@ -31,9 +31,9 @@ public class OI {
 	private void initializeDefaultButtons(){
 	
 		//Operator Buttons
-		operatorController.aButton.whileHeld(new Intake());
-		operatorController.xButton.whileHeld(new Agitate());
-		operatorController.yButton.whenPressed(new LaunchCMD());
+		operatorController.xButton.whileHeld(new Intake());
+		operatorController.aButton.whileHeld(new Agitate());
+		operatorController.yButton.whileHeld(new LaunchCMD());
 		
 		/*
 		leftBumper2.whileHeld(new IntakeArmUpCMD());

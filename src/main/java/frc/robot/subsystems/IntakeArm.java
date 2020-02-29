@@ -20,11 +20,11 @@ public class IntakeArm extends SubsystemBase {
 
     //Methods
     public void armIntakeUp(double power) {
-        armTalon.set(ControlMode.PercentOutput, power);
+        armTalon.set(ControlMode.PercentOutput, 0.25*power);
     }
 
     public void armIntakeDown(double power){
-        armTalon.set(ControlMode.PercentOutput, -power);
+        armTalon.set(ControlMode.PercentOutput, -0.25*power);
     }
 
     public void Stop() {

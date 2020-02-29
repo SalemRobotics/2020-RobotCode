@@ -1,10 +1,11 @@
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
-
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
+
 //Subsystem imports 
 import frc.robot.subsystems.*;
 import frc.robot.OI;
@@ -12,6 +13,7 @@ import frc.robot.OI;
 
 
 public class Robot extends TimedRobot {
+
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
@@ -25,36 +27,23 @@ public class Robot extends TimedRobot {
   public static Hopper hopper;
   public static OI oi;
   public static SmartDashboard sd;
+  public static Climber climber; 
       
   
   @Override
   public void robotInit() {
-    /*
-    *DriveTrain Initializations
 
-    RobotMap.dt_leftfront = new TalonFX(RobotMap.dt_leftfront_port);
-    RobotMap.dt_leftrear = new TalonFX(RobotMap.dt_leftrear_port);
-    RobotMap.dt_rightfront = new TalonFX(RobotMap.dt_rightfront_port);
-    RobotMap.dt_rightrear = new TalonFX(RobotMap.dt_rightrear_port);
-
-    RobotMap.dt_leftfront.configFactoryDefault();
-    RobotMap.dt_leftrear.configFactoryDefault();
-    RobotMap.dt_rightfront.configFactoryDefault();
-    RobotMap.dt_rightrear.configFactoryDefault();
-
-  
-    RobotMap.dt_leftrear.follow(RobotMap.dt_leftfront);
-    RobotMap.dt_rightrear.follow(RobotMap.dt_rightfront);
-    */
-
+    // Subsystem Init
     drivetrain = new DriveTrain();
     intakeroller = new IntakeRoller();
     intakearm = new IntakeArm();
     launcher = new Launcher();
     hopper = new Hopper();
     oi = new OI();
+    climber = new Climber(); 
+
   }
-//hello
+
   
   @Override
   public void robotPeriodic() {
@@ -63,14 +52,13 @@ public class Robot extends TimedRobot {
   
   @Override
   public void autonomousInit() {
-   DriveTrain.driveToInch(10);
   }
 
   
   @Override
   public void autonomousPeriodic() {
-    SmartDashboard.putNumber("Left Motor Out", RobotMap.dt_leftfront.getSensorCollection().getIntegratedSensorPosition());
-    SmartDashboard.putNumber("Right Motor Out", RobotMap.dt_rightfront.getSensorCollection().getIntegratedSensorPosition());
+    //SmartDashboard.putNumber("Left Motor Out", RobotMap.dt_leftfront.getSensorCollection().getIntegratedSensorPosition());
+    //SmartDashboard.putNumber("Right Motor Out", RobotMap.dt_rightfront.getSensorCollection().getIntegratedSensorPosition());
     
   }
 
@@ -82,12 +70,17 @@ public class Robot extends TimedRobot {
   }
   @Override
   public void teleopPeriodic() {
-    //Tele-op Drive Command
-    drivetrain.driveWithJoysticks(oi.getLeftStickY(), oi.getRightStickX());
-    intakearm.armIntakeUp(oi.opLeftStickY());
-    launcher.launch(oi.opRightStickY()*0.325);
-    hopper.funnel(oi.opRightStickY()*-0.325);
-    intakeroller.Intake(1);
+
+    //Tele-op Controls
+      //Intake
+      intakearm.armIntakeUp(oi.opLeftStickY());
+      //intakeroller.Intake(1);
+
+      //Hopper
+      hopper.agitate(oi.opRightStickY()*-0.325);
+
+      //Climber
+      climber.climberUp(oi.opRightTrigger()*.5);
 
     
     //Smartboard Drive Value Output
@@ -95,7 +88,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Right Motor Out", RobotMap.dt_rightfront.getSensorCollection().getIntegratedSensorPosition());
 
 
-    
+    CommandScheduler.getInstance().run();
   }
 
  

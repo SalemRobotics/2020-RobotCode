@@ -15,16 +15,16 @@ public class Hopper extends SubsystemBase {
   public CANSparkMax funnelMotor;
 
   public Hopper() {
-    funnelMotor = new CANSparkMax(RobotMap.AGITATOR_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
-    agitatorMotor = new CANSparkMax(RobotMap.FUNNEL_MOTOR,CANSparkMaxLowLevel.MotorType.kBrushless);
+    funnelMotor = new CANSparkMax(RobotMap.FUNNEL_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
+    agitatorMotor = new CANSparkMax(RobotMap.AGITATOR_MOTOR,CANSparkMaxLowLevel.MotorType.kBrushless);
+  }
+
+  public void agitate(double power){
+    agitatorMotor.set(power);
   }
 
   public void funnel(double power){
-    funnelMotor.set(power);
-  }
-
-  public static void Agitate(){
-    agitatorMotor.set(.5);
+    agitatorMotor.set(power);
   }
   public static void Stop(){
     agitatorMotor.set(0);

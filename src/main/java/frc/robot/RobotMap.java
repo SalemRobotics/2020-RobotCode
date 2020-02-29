@@ -39,5 +39,8 @@ public class RobotMap {
         public static final int AGITATOR_MOTOR = 10;
         public static final int FUNNEL_MOTOR = 11;
 
+    //climber stuffs
+        public static final int CLIMBER_MOTOR = 12; 
+
 
 }

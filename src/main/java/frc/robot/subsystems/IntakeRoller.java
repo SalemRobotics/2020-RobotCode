@@ -13,11 +13,11 @@ import frc.robot.RobotMap;
 public class IntakeRoller extends SubsystemBase {
     
     //Motor stuff
-    public static CANSparkMax rollerMotorA;
+    //public static CANSparkMax rollerMotorA;
     public static CANSparkMax rollerMotorB;
 
     public IntakeRoller() {
-        rollerMotorA = new CANSparkMax(RobotMap.rollerMotorA, CANSparkMaxLowLevel.MotorType.kBrushless);
+        //rollerMotorA = new CANSparkMax(RobotMap.rollerMotorA, CANSparkMaxLowLevel.MotorType.kBrushless);
         rollerMotorB = new CANSparkMax(RobotMap.rollerMotorB, CANSparkMaxLowLevel.MotorType.kBrushless);
 
         //rollerMotorB.follow(rollerMotorA, true);
@@ -30,14 +30,14 @@ public class IntakeRoller extends SubsystemBase {
         rollerMotorB.set(power);
     }
 
-    public static void Stop() {
-        rollerMotorA.set(0);
+    public void Stop() {
+       // rollerMotorA.set(0);
         rollerMotorB.set(0);
 
     }
 
     public void Repel() {
-        rollerMotorA.set(-0.2);
+        //rollerMotorA.set(-0.2);
         rollerMotorB.set(-0.2);
     }
 

@@ -12,8 +12,7 @@ import frc.robot.Robot;
 
 public class DriveCMD extends CommandBase {
   public DriveCMD() {
-    // Use requires() here to declare subsystem dependencies
-    //requires(Robot.drivetrain);
+    addRequirements(Robot.drivetrain);
   }
 
   // Called just before this Command runs the first time
