@@ -1,5 +1,7 @@
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -67,6 +69,7 @@ public class Robot extends TimedRobot {
   public void teleopInit() {
     RobotMap.dt_leftfront.setSelectedSensorPosition(0);
     RobotMap.dt_rightfront.setSelectedSensorPosition(0);
+    climber.climberTalon.set(ControlMode.PercentOutput, .5);
   }
   @Override
   public void teleopPeriodic() {
@@ -80,9 +83,10 @@ public class Robot extends TimedRobot {
       hopper.agitate(oi.opRightStickY()*-0.325);
 
       //Climber
-      climber.climberUp(oi.opRightTrigger()*.5);
-
+      climber.climberUp(oi.opLeftTrigger()*.5);
     
+      
+
     //Smartboard Drive Value Output
     SmartDashboard.putNumber("Left Motor Out", RobotMap.dt_leftfront.getSensorCollection().getIntegratedSensorPosition());
     SmartDashboard.putNumber("Right Motor Out", RobotMap.dt_rightfront.getSensorCollection().getIntegratedSensorPosition());
