@@ -11,18 +11,31 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.sensors.*;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
+import frc.robot.DriveConstants;
 import frc.robot.Games;
 import frc.robot.commands.DriveCMD;
 import frc.robot.utils.UnitConversions;
+
+//Trajectory Imports
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+
+
+
 
 /**
  * Add your docs here.
  */
 public class DriveTrain extends SubsystemBase {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+  // Put methods for controlling this subsystem here. Call these from Commands.
+
+  //Trajectory
+  private final DifferentialDriveOdometry m_odometry;
 
   public DriveTrain(){
     //initialize motor ports
@@ -32,7 +45,7 @@ public class DriveTrain extends SubsystemBase {
     RobotMap.dt_rightfront = new TalonFX(RobotMap.dt_rightfront_port);
 
     //initialize gyro
-    PigeonIMU gyro = new PigeonIMU(RobotMap.GYRO_PORT);
+    RobotMap.gyro = new PigeonIMU(RobotMap.GYRO_PORT);
 
     //reset to factory defaults
     RobotMap.dt_leftfront.configFactoryDefault();
@@ -49,10 +62,7 @@ public class DriveTrain extends SubsystemBase {
     RobotMap.dt_rightfront.config_kI(0, Games.DrivePID_I);
     RobotMap.dt_leftfront.config_kD(0, Games.DrivePID_D);
     RobotMap.dt_rightfront.config_kD(0, Games.DrivePID_D);
-   
-  
-//this is my contribution--carly
-//i get to do stuff for once--c.a.m.
+
 
     RobotMap.dt_leftfront.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
     RobotMap.dt_rightfront.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
@@ -60,11 +70,17 @@ public class DriveTrain extends SubsystemBase {
     RobotMap.dt_leftrear.follow(RobotMap.dt_leftfront);
     RobotMap.dt_rightrear.follow(RobotMap.dt_rightfront);
 
+    m_odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getGyroAngle()));
+
+
   }
   
   @Override
   public void periodic() {
     setDefaultCommand(new DriveCMD());
+    // Update the odometry in the periodic block
+    m_odometry.update(Rotation2d.fromDegrees(getGyroAngle()), getLeftEncoderValue(),
+                      getRightEncoderValue());
   }
 
   protected double limit(double value) {
@@ -138,6 +154,21 @@ public class DriveTrain extends SubsystemBase {
     return mean;
   }
 
+  public static double getRightEncoderValue(){
+    double right = RobotMap.dt_rightfront.getSelectedSensorPosition();
+    return right;
+  }
+
+  public static double getLeftEncoderValue(){
+    double left = RobotMap.dt_leftfront.getSelectedSensorPosition();
+    return left; 
+  }
+
+  public static double getGyroAngle(){
+    double angle = RobotMap.gyro.getCompassHeading();
+    return angle;
+  }
+
   public static void driveToInch(double inches){
     RobotMap.dt_leftfront.setSelectedSensorPosition(0);
     RobotMap.dt_rightfront.setSelectedSensorPosition(0);
@@ -145,6 +176,19 @@ public class DriveTrain extends SubsystemBase {
     RobotMap.dt_rightfront.set(ControlMode.Position, (UnitConversions.inchesToPulses(inches * 12)) * 1);
 
   }
+
+  public DifferentialDriveWheelSpeeds getWheelSpeeds() {
+    return new DifferentialDriveWheelSpeeds(getLeftEncoderValue(), getRightEncoderValue());
+  }
+
+  public Pose2d getPose() {
+    return m_odometry.getPoseMeters();
+  }
+
+
+
+
+
 
 
 }
