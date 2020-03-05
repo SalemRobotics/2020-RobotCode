@@ -97,9 +97,9 @@ public class OI {
 
 		public double opLeftTrigger() {
 			return -operatorController.getRawAxis(2);
-		}
+			
 
 		
 
+	 }
 }
-

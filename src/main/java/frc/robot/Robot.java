@@ -25,6 +25,7 @@ public class Robot extends TimedRobot {
   public static Hopper hopper;
   public static OI oi;
   public static SmartDashboard sd;
+  public static SendableChooser chooser;
       
   
   @Override
@@ -53,9 +54,22 @@ public class Robot extends TimedRobot {
     launcher = new Launcher();
     hopper = new Hopper();
     oi = new OI();
+    initSmartdashboard();
+   
   }
 //hello
+protected void initSmartdashboard() {
+
+  // Smart Dashboard Chooser
+  chooser = new SendableChooser<>();
   
+  //chooser.addDefault("Middle Position Put Cube", new [AUTONPROGRAMHERE]); 
+  
+  SmartDashboard.putData("Autonomous Commands", chooser);
+
+  // SmartDashboard.putData("Drive to Distance 100", new DriveToDistance(100));
+}
+
   @Override
   public void robotPeriodic() {
   }
