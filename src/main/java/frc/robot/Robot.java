@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.Command;
+
 
 //Subsystem imports 
 import frc.robot.subsystems.*;
@@ -14,6 +16,10 @@ import frc.robot.OI;
 
 
 public class Robot extends TimedRobot {
+
+  private Command m_autonomousCommand;
+  private RobotContainer m_robotContainer;
+
 
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
@@ -42,6 +48,9 @@ public class Robot extends TimedRobot {
     oi = new OI();
     climber = new Climber(); 
 
+    m_robotContainer = new RobotContainer();
+
+
   }
 
   
@@ -52,6 +61,13 @@ public class Robot extends TimedRobot {
   
   @Override
   public void autonomousInit() {
+    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+
+
+    // schedule the autonomous command (example)
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.schedule();
+    }
   }
 
   

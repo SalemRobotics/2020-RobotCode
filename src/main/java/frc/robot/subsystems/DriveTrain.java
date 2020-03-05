@@ -102,7 +102,12 @@ public class DriveTrain extends SubsystemBase {
     }
   }
 
-
+  /**
+   * Drives the robot using arcade controls.
+   *
+   * @param fwd the commanded forward movement
+   * @param rot the commanded rotation
+   */
   public void driveWithJoysticks(double xSpeed, double zRotation) {
     xSpeed = limit(xSpeed);
     xSpeed = deadBand(xSpeed, RobotMap.dt_deadBand);
@@ -144,47 +149,93 @@ public class DriveTrain extends SubsystemBase {
     RobotMap.dt_rightfront.set(ControlMode.PercentOutput, (rightMotorOutput) * -1.0);
   }
 
+  /**
+   * Stops the Drive Train.
+   *
+   */
   public void haltDriveTrain() {
     driveWithJoysticks(0, 0);
   }
 
+  /**
+   * Returns the mean encoder value.
+   *
+   * @return The mean encoder value.
+   */
   public static double getMeanEncoderValue(){
     double total = RobotMap.dt_leftfront.getSelectedSensorPosition() +  RobotMap.dt_rightfront.getSelectedSensorPosition();
     double mean = total/2;
     return mean;
   }
 
+  /**
+   * Returns the right encoder value.
+   *
+   * @return The right encoder value.
+   */
   public static double getRightEncoderValue(){
     double right = RobotMap.dt_rightfront.getSelectedSensorPosition();
     return right;
   }
 
+  /**
+   * Returns the left encoder value.
+   *
+   * @return The left encoder value.
+   */
   public static double getLeftEncoderValue(){
     double left = RobotMap.dt_leftfront.getSelectedSensorPosition();
     return left; 
   }
 
+
+/**
+   * Returns the current orientation of the robot.
+   *
+   * @return The heading angle.
+   */
   public static double getGyroAngle(){
     double angle = RobotMap.gyro.getCompassHeading();
     return angle;
   }
 
-  public static void driveToInch(double inches){
-    RobotMap.dt_leftfront.setSelectedSensorPosition(0);
-    RobotMap.dt_rightfront.setSelectedSensorPosition(0);
-    RobotMap.dt_leftfront.set(ControlMode.Position, (UnitConversions.inchesToPulses(inches * 12)) * -1);
-    RobotMap.dt_rightfront.set(ControlMode.Position, (UnitConversions.inchesToPulses(inches * 12)) * 1);
 
-  }
 
-  public DifferentialDriveWheelSpeeds getWheelSpeeds() {
-    return new DifferentialDriveWheelSpeeds(getLeftEncoderValue(), getRightEncoderValue());
-  }
-
+  /**
+   * Returns the currently-estimated pose of the robot.
+   *
+   * @return The pose.
+   */
   public Pose2d getPose() {
     return m_odometry.getPoseMeters();
   }
 
+  /**
+   * Returns the current wheel speeds of the robot.
+   *
+   * @return The current wheel speeds.
+   */
+  public DifferentialDriveWheelSpeeds getWheelSpeeds() {
+    return new DifferentialDriveWheelSpeeds(getLeftEncoderValue(), getRightEncoderValue());
+  }
+
+  /**
+   * Controls the left and right sides of the drive directly with voltages.
+   *
+   * @param leftVolts  the commanded left output
+   * @param rightVolts the commanded right output
+   */
+  public void tankDriveVolts(double leftVolts, double rightVolts) {
+    RobotMap.dt_leftfront.set(ControlMode.PercentOutput, leftVolts);
+    RobotMap.dt_rightfront.set(ControlMode.PercentOutput, -rightVolts);
+  }
+
+  /**
+   * Zeroes the heading of the robot.
+   */
+  public void zeroHeading() {
+    RobotMap.gyro.setCompassAngle(0);
+  }
 
 
 

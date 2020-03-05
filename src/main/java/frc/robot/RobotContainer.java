@@ -80,8 +80,8 @@ public class RobotContainer {
   private void configureButtonBindings() {
     // Drive at half speed when the right bumper is held
     //new JoystickButton(m_driverController, Button.kBumperRight.value)
-    //    .whenPressed(() -> m_robotDrive.setMaxOutput(0.5))
-    //    .whenReleased(() -> m_robotDrive.setMaxOutput(1));
+      //  .whenPressed(() -> m_robotDrive.setMaxOutput(0.5))
+        //.whenReleased(() -> m_robotDrive.setMaxOutput(1));
 
   }
 
@@ -110,6 +110,13 @@ public class RobotContainer {
             .setKinematics(DriveConstants.kDriveKinematics)
             // Apply the voltage constraint
             .addConstraint(autoVoltageConstraint);
+
+    /* 
+    _______________________________________________________________________________
+
+                                    Trajectories
+    _______________________________________________________________________________
+    */
 
     // An example trajectory to follow.  All units in meters.
     Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
