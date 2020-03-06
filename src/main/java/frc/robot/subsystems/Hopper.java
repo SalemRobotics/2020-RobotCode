@@ -17,6 +17,7 @@ public class Hopper extends SubsystemBase {
   public Hopper() {
     funnelMotor = new CANSparkMax(RobotMap.FUNNEL_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
     agitatorMotor = new CANSparkMax(RobotMap.AGITATOR_MOTOR,CANSparkMaxLowLevel.MotorType.kBrushless);
+    System.out.println("Hopper, On Line!");
   }
 
   public void agitate(double power){

@@ -74,6 +74,7 @@ public class DriveTrain extends SubsystemBase {
 
     m_odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getGyroAngle()));
 
+    System.out.println("Drivetrain, On Line!");
 
   }
   

@@ -22,6 +22,9 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
 
+  public static DriveCMD dc;
+  
+  public static SmartDashboard sd;
 
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
@@ -35,8 +38,6 @@ public class Robot extends TimedRobot {
   public static Launcher launcher;
   public static Hopper hopper;
   public static OI oi;
-  public static DriveCMD dc;
-  public static SmartDashboard sd;
   public static Climber climber; 
   
   

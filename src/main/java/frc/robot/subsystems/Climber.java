@@ -12,6 +12,7 @@ public class Climber extends SubsystemBase {
 
     public Climber(){
         climberTalon = new TalonSRX(RobotMap.CLIMBER_MOTOR);
+        System.out.println("Climber, On Line!");
     }
 
     //methods

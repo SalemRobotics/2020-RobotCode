@@ -21,7 +21,7 @@ public class IntakeRoller extends SubsystemBase {
         rollerMotorB = new CANSparkMax(RobotMap.rollerMotorB, CANSparkMaxLowLevel.MotorType.kBrushless);
 
         //rollerMotorB.follow(rollerMotorA, true);
-
+        System.out.println("Intake Roller, On Line!");
     } 
 
     // Methods
