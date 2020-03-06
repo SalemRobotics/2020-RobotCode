@@ -40,7 +40,7 @@ public final class Constants {
             new DifferentialDriveKinematics(kTrackwidthMeters);
 
         public static final int kEncoderCPR = 1024;
-        public static final double kWheelDiameterMeters = 0.15;
+        public static final double kWheelDiameterMeters = 0.1524;
         public static final double kEncoderDistancePerPulse =
             // Assumes the encoders are directly mounted on the wheel shafts
             (kWheelDiameterMeters * Math.PI) / (double) kEncoderCPR;
@@ -57,11 +57,11 @@ public final class Constants {
         public static final double kaVoltSecondsSquaredPerMeter = 0.0246;
 
         // Example value only - as above, this must be tuned for your drive!
-        public static final double kPDriveVel = 8.5;
+        public static final double kPDriveVel = 2.64;
     }
 
     public static final class OIConstants {
-        public static final int kDriverControllerPort = 1;
+        public static final int kDriverControllerPort = 0;
     }
 
     public static final class AutoConstants {
