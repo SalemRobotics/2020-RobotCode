@@ -26,9 +26,9 @@ public class Agitate extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   public void execute() {
-    if(Robot.launcher.launcherMotorA.getVoltageCompensationNominalVoltage() >= 0.31){
+    //if(Robot.launcher.launcherMotorA.getVoltageCompensationNominalVoltage() >= 0.31){
       Robot.hopper.agitate(-.3);
-    }
+    //}
     
 }
 

@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+import java.lang.module.ModuleDescriptor.Requires;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
@@ -77,10 +79,11 @@ public class DriveTrain extends SubsystemBase {
   
   @Override
   public void periodic() {
-    setDefaultCommand(new DriveCMD());
+    //setDefaultCommand(new DriveCMD());
     // Update the odometry in the periodic block
-    m_odometry.update(Rotation2d.fromDegrees(getGyroAngle()), getLeftEncoderValue(),
-                      getRightEncoderValue());
+   // m_odometry.update(Rotation2d.fromDegrees(getGyroAngle()), getLeftEncoderValue(),
+     //                 getRightEncoderValue());
+                      
   }
 
   protected double limit(double value) {

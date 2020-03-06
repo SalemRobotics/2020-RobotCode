@@ -24,7 +24,8 @@ public class RobotMap {
 
         public static DifferentialDrive drivetrain;
 
-        public static final int GYRO_PORT = 12;
+        public static final int GYRO_PORT = 13;
+
 
 
     //intake stuffs

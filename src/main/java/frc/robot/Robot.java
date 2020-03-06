@@ -9,9 +9,11 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Command;
 
 
+
 //Subsystem imports 
 import frc.robot.subsystems.*;
 import frc.robot.OI;
+import frc.robot.commands.DriveCMD;
 
 
 
@@ -33,8 +35,10 @@ public class Robot extends TimedRobot {
   public static Launcher launcher;
   public static Hopper hopper;
   public static OI oi;
+  public static DriveCMD dc;
   public static SmartDashboard sd;
   public static Climber climber; 
+  
   
   @Override
   public void robotInit() {
@@ -47,6 +51,7 @@ public class Robot extends TimedRobot {
     hopper = new Hopper();
     oi = new OI();
     climber = new Climber(); 
+    dc = new DriveCMD();
 
     m_robotContainer = new RobotContainer();
 
@@ -61,6 +66,7 @@ public class Robot extends TimedRobot {
   
   @Override
   public void autonomousInit() {
+    RobotMap.gyro.setCompassAngle(0);
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
 
@@ -84,6 +90,8 @@ public class Robot extends TimedRobot {
     RobotMap.dt_leftfront.setSelectedSensorPosition(0);
     RobotMap.dt_rightfront.setSelectedSensorPosition(0);
     climber.climberTalon.set(ControlMode.PercentOutput, .5);
+    RobotMap.gyro.setCompassAngle(0);
+    
   }
   @Override
   public void teleopPeriodic() {
