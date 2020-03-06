@@ -24,7 +24,7 @@ public class Intake extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   public void execute() {
-    Robot.intakeroller.Intake(-1);
+    Robot.intakeroller.Intake(-0.7);
   }
 
   // Make this return true when this Command no longer needs to run execute()

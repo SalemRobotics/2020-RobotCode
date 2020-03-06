@@ -2,6 +2,7 @@ package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.sensors.PigeonIMU;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -11,6 +12,7 @@ public class RobotMap {
         public final int driveleft_port = 1;
 
         public static TalonFX dt_leftrear, dt_leftfront, dt_rightrear, dt_rightfront;
+        public static PigeonIMU gyro;
 
         public static final int dt_leftrear_port = 0;
         public static final int dt_leftfront_port = 1;
@@ -22,7 +24,8 @@ public class RobotMap {
 
         public static DifferentialDrive drivetrain;
 
-        public static final int GYRO_PORT = 12;
+        public static final int GYRO_PORT = 13;
+
 
 
     //intake stuffs

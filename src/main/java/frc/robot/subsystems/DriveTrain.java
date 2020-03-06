@@ -7,22 +7,37 @@
 
 package frc.robot.subsystems;
 
+import java.lang.module.ModuleDescriptor.Requires;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.sensors.*;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
+import frc.robot.Constants.DriveConstants;
 import frc.robot.Games;
 import frc.robot.commands.DriveCMD;
 import frc.robot.utils.UnitConversions;
+
+//Trajectory Imports
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+
+
+
 
 /**
  * Add your docs here.
  */
 public class DriveTrain extends SubsystemBase {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+  // Put methods for controlling this subsystem here. Call these from Commands.
+
+  //Trajectory
+  private final DifferentialDriveOdometry m_odometry;
 
   public DriveTrain(){
     //initialize motor ports
@@ -32,7 +47,7 @@ public class DriveTrain extends SubsystemBase {
     RobotMap.dt_rightfront = new TalonFX(RobotMap.dt_rightfront_port);
 
     //initialize gyro
-    PigeonIMU gyro = new PigeonIMU(RobotMap.GYRO_PORT);
+    RobotMap.gyro = new PigeonIMU(RobotMap.GYRO_PORT);
 
     //reset to factory defaults
     RobotMap.dt_leftfront.configFactoryDefault();
@@ -49,10 +64,7 @@ public class DriveTrain extends SubsystemBase {
     RobotMap.dt_rightfront.config_kI(0, Games.DrivePID_I);
     RobotMap.dt_leftfront.config_kD(0, Games.DrivePID_D);
     RobotMap.dt_rightfront.config_kD(0, Games.DrivePID_D);
-   
-  
-//this is my contribution--carly
-//i get to do stuff for once--c.a.m.
+
 
     RobotMap.dt_leftfront.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
     RobotMap.dt_rightfront.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
@@ -60,11 +72,18 @@ public class DriveTrain extends SubsystemBase {
     RobotMap.dt_leftrear.follow(RobotMap.dt_leftfront);
     RobotMap.dt_rightrear.follow(RobotMap.dt_rightfront);
 
+    m_odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getGyroAngle()));
+
+
   }
   
   @Override
   public void periodic() {
-    setDefaultCommand(new DriveCMD());
+    //setDefaultCommand(new DriveCMD());
+    // Update the odometry in the periodic block
+   // m_odometry.update(Rotation2d.fromDegrees(getGyroAngle()), getLeftEncoderValue(),
+     //                 getRightEncoderValue());
+                      
   }
 
   protected double limit(double value) {
@@ -86,7 +105,12 @@ public class DriveTrain extends SubsystemBase {
     }
   }
 
-
+  /**
+   * Drives the robot using arcade controls.
+   *
+   * @param fwd the commanded forward movement
+   * @param rot the commanded rotation
+   */
   public void driveWithJoysticks(double xSpeed, double zRotation) {
     xSpeed = limit(xSpeed);
     xSpeed = deadBand(xSpeed, RobotMap.dt_deadBand);
@@ -128,23 +152,97 @@ public class DriveTrain extends SubsystemBase {
     RobotMap.dt_rightfront.set(ControlMode.PercentOutput, (rightMotorOutput) * -1.0);
   }
 
+  /**
+   * Stops the Drive Train.
+   *
+   */
   public void haltDriveTrain() {
     driveWithJoysticks(0, 0);
   }
 
+  /**
+   * Returns the mean encoder value.
+   *
+   * @return The mean encoder value.
+   */
   public static double getMeanEncoderValue(){
     double total = RobotMap.dt_leftfront.getSelectedSensorPosition() +  RobotMap.dt_rightfront.getSelectedSensorPosition();
     double mean = total/2;
     return mean;
   }
 
-  public static void driveToInch(double inches){
-    RobotMap.dt_leftfront.setSelectedSensorPosition(0);
-    RobotMap.dt_rightfront.setSelectedSensorPosition(0);
-    RobotMap.dt_leftfront.set(ControlMode.Position, (UnitConversions.inchesToPulses(inches * 12)) * -1);
-    RobotMap.dt_rightfront.set(ControlMode.Position, (UnitConversions.inchesToPulses(inches * 12)) * 1);
-
+  /**
+   * Returns the right encoder value.
+   *
+   * @return The right encoder value.
+   */
+  public static double getRightEncoderValue(){
+    double right = RobotMap.dt_rightfront.getSelectedSensorPosition();
+    return right;
   }
+
+  /**
+   * Returns the left encoder value.
+   *
+   * @return The left encoder value.
+   */
+  public static double getLeftEncoderValue(){
+    double left = RobotMap.dt_leftfront.getSelectedSensorPosition();
+    return left; 
+  }
+
+
+/**
+   * Returns the current orientation of the robot.
+   *
+   * @return The heading angle.
+   */
+  public static double getGyroAngle(){
+    double angle = RobotMap.gyro.getCompassHeading();
+    return angle;
+  }
+
+
+
+  /**
+   * Returns the currently-estimated pose of the robot.
+   *
+   * @return The pose.
+   */
+  public Pose2d getPose() {
+    return m_odometry.getPoseMeters();
+  }
+
+  /**
+   * Returns the current wheel speeds of the robot.
+   *
+   * @return The current wheel speeds.
+   */
+  public DifferentialDriveWheelSpeeds getWheelSpeeds() {
+    return new DifferentialDriveWheelSpeeds(getLeftEncoderValue(), getRightEncoderValue());
+  }
+
+  /**
+   * Controls the left and right sides of the drive directly with voltages.
+   *
+   * @param leftVolts  the commanded left output
+   * @param rightVolts the commanded right output
+   */
+  public void tankDriveVolts(double leftVolts, double rightVolts) {
+    RobotMap.dt_leftfront.set(ControlMode.PercentOutput, leftVolts);
+    RobotMap.dt_rightfront.set(ControlMode.PercentOutput, -rightVolts);
+  }
+
+  /**
+   * Zeroes the heading of the robot.
+   */
+  public void zeroHeading() {
+    RobotMap.gyro.setCompassAngle(0);
+  }
+
+
+
+
 
 
 }
