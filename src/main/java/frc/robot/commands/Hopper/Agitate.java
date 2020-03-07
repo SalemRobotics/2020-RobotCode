@@ -8,11 +8,15 @@
 package frc.robot.commands.Hopper;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj.Timer;
 import frc.robot.Robot;
 import frc.robot.subsystems.Hopper;
 import frc.robot.subsystems.IntakeRoller;
 
 public class Agitate extends CommandBase {
+
+  double time; 
+
   public Agitate() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -26,16 +30,17 @@ public class Agitate extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   public void execute() {
-    //if(Robot.launcher.launcherMotorA.getVoltageCompensationNominalVoltage() >= 0.31){
-      Robot.hopper.agitate(-.3);
-    //}
+
+    Timer.delay(1);
+    Robot.hopper.agitate(-.3);
+
     
 }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   public boolean isFinished() {
-    return false;
+		return false;	
   }
 
   // Called once after isFinished returns true

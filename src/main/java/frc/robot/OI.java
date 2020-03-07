@@ -7,6 +7,7 @@ import frc.robot.commands.IntakeArm.IntakeArmDownCMD;
 import frc.robot.commands.IntakeArm.IntakeArmUpCMD;
 import frc.robot.subsystems.Hopper;
 import frc.robot.xbox.XboxJoystickController;
+import frc.robot.commands.Groups.ShootCMD;
 import frc.robot.commands.Hopper.*;
 import frc.robot.commands.Launcher.LaunchCMD;
 
@@ -32,9 +33,8 @@ public class OI {
 	
 		//Operator Buttons
 		operatorController.xButton.whileHeld(new Intake());
-		operatorController.aButton.whileHeld(new Agitate());
-		operatorController.yButton.whileHeld(new LaunchCMD());
-		
+		operatorController.aButton.whileHeld(new ShootCMD());
+				
 		/*
 		leftBumper2.whileHeld(new IntakeArmUpCMD());
 		rightBumper2.whileHeld(new IntakeArmDownCMD());

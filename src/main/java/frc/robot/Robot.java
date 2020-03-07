@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj.DriverStation;
 
 
 
@@ -39,6 +40,9 @@ public class Robot extends TimedRobot {
   public static Hopper hopper;
   public static OI oi;
   public static Climber climber; 
+  public DriverStation station;
+
+  //boolean fms = DriverStation.
   
   
   @Override
@@ -56,7 +60,7 @@ public class Robot extends TimedRobot {
 
     m_robotContainer = new RobotContainer();
 
-
+    
   }
 
   
@@ -85,8 +89,14 @@ public class Robot extends TimedRobot {
   public void teleopInit() {
     RobotMap.dt_leftfront.setSelectedSensorPosition(0);
     RobotMap.dt_rightfront.setSelectedSensorPosition(0);
-    climber.climberTalon.set(ControlMode.PercentOutput, .5);
+    climber.climberTalon.set(ControlMode.PercentOutput, .25);
     RobotMap.gyro.setCompassAngle(0);
+    SmartDashboard.putNumber("Match Number", DriverStation.getInstance().getMatchNumber());
+
+    
+    
+    
+      
     
   }
   @Override
@@ -101,14 +111,21 @@ public class Robot extends TimedRobot {
       hopper.agitate(oi.opRightStickY()*-0.325);
 
       //Climber
-      climber.climberUp(oi.opLeftTrigger()*.5);
-    
-      
+      climber.climberUp(oi.opLeftTrigger()*.25);
 
+      boolean fms = DriverStation.getInstance().isFMSAttached();
+
+      if(fms==false){
+
+        climber.climberTalon.set(ControlMode.PercentOutput, -.25);
+    
+        }
+
+  
     //Smartboard Drive Value Output
     SmartDashboard.putNumber("Left Motor Out", RobotMap.dt_leftfront.getSensorCollection().getIntegratedSensorPosition());
     SmartDashboard.putNumber("Right Motor Out", RobotMap.dt_rightfront.getSensorCollection().getIntegratedSensorPosition());
-
+    
 
     CommandScheduler.getInstance().run();
   }
